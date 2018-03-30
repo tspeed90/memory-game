@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const request = require('request');
+require('dotenv').config();
 
 
 const staticHandler = (response, filepath) => {
@@ -26,18 +27,23 @@ const staticHandler = (response, filepath) => {
 }
 
 const apiHandler = (response) => {
-  request('https://jsonplaceholder.typicode.com/users/9', (err, _, body) => {
+
+  request(`https://pixabay.com/api/?key=${process.env.API_KEY}&q=textures&order=popular&page=1`, (err, _, body) => {
     if (err) {
       console.log(err);
       response.writeHead(500,{'Content-Type': 'text/html'});
       response.end('<h1>Sorry, we had a problem.</h1>');
     } else {
       const data = JSON.parse(body);
+      let images = [];
+      images.push(data.hits[0].largeImageURL);
+      console.log(images);
       response.writeHead(200, {'Content-Type': 'application/json'});
-      response.end(JSON.stringify({name : data.name}));
+      response.end(JSON.stringify(images));
     }
   });
 }
+
 
 const notFoundHandler = (response) => {
   response.writeHead(404, {'Content-Type' : 'text/html'});
