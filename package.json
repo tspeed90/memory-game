@@ -1,0 +1,32 @@
+{
+  "name": "memory-game",
+  "version": "1.0.0",
+  "description": "A memory game using photos from an external API",
+  "main": "server.js",
+  "scripts": {
+    "test": "nyc tape ./test/*.test.js",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tspeed90/memory-game.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "api",
+    "javascript"
+  ],
+  "author": "T. Speed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tspeed90/memory-game/issues"
+  },
+  "homepage": "https://github.com/tspeed90/memory-game#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.2",
+    "nyc": "^11.6.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.9.0"
+  }
+}
