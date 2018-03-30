@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const request = require('request');
 
 
 const staticHandler = (response, filepath) => {
@@ -24,6 +25,20 @@ const staticHandler = (response, filepath) => {
   });
 }
 
+const apiHandler = (response) => {
+  request('https://jsonplaceholder.typicode.com/users/9', (err, _, body) => {
+    if (err) {
+      console.log(err);
+      response.writeHead(500,{'Content-Type': 'text/html'});
+      response.end('<h1>Sorry, we had a problem.</h1>');
+    } else {
+      const data = JSON.parse(body);
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      response.end(JSON.stringify({name : data.name}));
+    }
+  });
+}
+
 const notFoundHandler = (response) => {
   response.writeHead(404, {'Content-Type' : 'text/html'});
   response.end('<h1>Sorry, we couldn\'t find what you\'re looking for.</h1>');
@@ -31,5 +46,6 @@ const notFoundHandler = (response) => {
 
 module.exports = {
   staticHandler,
-  notFoundHandler,
+  apiHandler,
+  notFoundHandler
 }
