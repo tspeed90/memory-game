@@ -16,7 +16,7 @@ const staticHandler = (response, filepath) => {
   fs.readFile(path.join(__dirname, '..', filepath), 'utf8', (error, file) => {
     if (error) {
       response.writeHead(500, {'Content-Type': 'text/html'});
-      response.end("<h1>Err</h1>");
+      response.end("<h1>Sorry, there was a problem on our end.</h1>");
     } else {
       response.writeHead(200, {'Content-Type': extensionType[extension]});
       response.end(file);
@@ -24,6 +24,12 @@ const staticHandler = (response, filepath) => {
   });
 }
 
+const notFoundHandler = (response) => {
+  response.writeHead(404, {'Content-Type' : 'text/html'});
+  response.end('<h1>Sorry, we couldn\'t find what you\'re looking for.</h1>');
+}
+
 module.exports = {
-  staticHandler
+  staticHandler,
+  notFoundHandler,
 }
