@@ -23,9 +23,8 @@ makeRequest('/api/',handleResponse, handleError);
 function handleResponse(images) {
   var imagesCopy = images.slice(0);
   images = images.concat(imagesCopy);
-  // displayImages(images);
+  displayImages(images);
 }
-
 
 
 // error callback
@@ -35,6 +34,14 @@ function handleError() {
 
 //function to display images on tiles
 function displayImages(images) {
+  var tiles =  document.querySelectorAll('.tile');
+  tiles.forEach(function(tile) {
+    var img = document.createElement('img');
+    tile.appendChild(img);
+    var randomIndex = Math.floor(Math.random() * images.length);
+    img.src = images[randomIndex];
+    images.splice(randomIndex, 1);
+  })
 
 }
 
