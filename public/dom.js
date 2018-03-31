@@ -16,9 +16,11 @@ var makeRequest = function(url, callback, errorCallback) {
   xhr.send();
 }
 
+makeRequest('/api/',displayImages, handleError);
+
 // callback function to display images on tiles
 function displayImages(images) {
- 
+ console.log(images);
 }
 
 
@@ -27,7 +29,6 @@ function displayImages(images) {
 function handleError() {
   console.log("error");
 }
-
 
 
 //event listener for clicks on tiles
