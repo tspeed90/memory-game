@@ -34,16 +34,18 @@ const apiHandler = (response) => {
       response.writeHead(500,{'Content-Type': 'text/html'});
       response.end('<h1>Sorry, we had a problem.</h1>');
     } else {
-      const data = JSON.parse(body);
-      let images = [];
-      images.push(data.hits[0].largeImageURL);
-      console.log(images);
       response.writeHead(200, {'Content-Type': 'application/json'});
-      response.end(JSON.stringify(images));
+      response.end(JSON.stringify(getImages(body)));
     }
   });
 }
 
+const getImages = (body) => {
+  const data = JSON.parse(body);
+  let images = data.hits.map(image => image.largeImageURL);
+  images.length = 8;
+  return images;
+}
 
 const notFoundHandler = (response) => {
   response.writeHead(404, {'Content-Type' : 'text/html'});
