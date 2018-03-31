@@ -55,5 +55,6 @@ const notFoundHandler = (response) => {
 module.exports = {
   staticHandler,
   apiHandler,
-  notFoundHandler
+  notFoundHandler, 
+  getImages
 }

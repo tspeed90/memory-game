@@ -2,6 +2,7 @@ const supertest = require('supertest');
 const test = require('tape');
 const {router} = require('../src/router');
 const nock = require('nock');
+const dummy = require('./testDummy.json');
 require('dotenv').config();
 
 
@@ -29,27 +30,10 @@ test('check for status code of 404', (t) => {
     });
 });
 
-test('check that api returns an object with the name property and value', (t) => {
+test('check that apiHandler function returns an array with 8 items', (t) => {
   nock("https://pixabay.com/api/")
       .get(`/?key=${process.env.API_KEY}&q=textures&order=popular&page=1`)
-      .reply(200, 
-        {
-          totalHits: 500,
-          hits: [{
-            largeImageURL: "https://pixabay.com/get/ea37b60c2ff1043ed1584d05fb1d4e93e776ead41cac104497f2c57da3ebb1bc_1280.jpg",
-            webformatHeight: 426,
-            webformatWidth: 640,
-            imageWidth: 5184,
-            pageURL: "https://pixabay.com/en/stone-rock-model-texture-gravel-3273755/",
-            imageHeight: 3456,
-            webformatURL: "https://pixabay.com/get/ea37b60c2ff1043ed1584d05fb1d4e93e776ead41cac104497f2c57da3ebb1bc_640.jpg",
-            type: "photo",
-            imageSize: 6635972,
-            userImageURL: "https://cdn.pixabay.com/user/2017/11/29/21-12-13-226_250x250.jpg",
-            previewURL: "https://cdn.pixabay.com/photo/2018/03/29/21/35/stone-3273755_150.jpg"
-          }]
-        }
-      );
+      .reply(200, dummy);
 
   supertest(router)
       .get('/api/')
@@ -57,7 +41,40 @@ test('check that api returns an object with the name property and value', (t) =>
       .expect('Content-Type', /json/)
         .end((err, res) => {
           t.error(err);
-          t.deepEqual(res.body, ["https://pixabay.com/get/ea37b60c2ff1043ed1584d05fb1d4e93e776ead41cac104497f2c57da3ebb1bc_1280.jpg"], 'object should contain name value and property');
+          t.deepEqual(res.body.length, 8, 'Should return an array with 8 items');
+          t.end()
+        });
+});
+
+
+test('check that apiHandler returns no null values', (t) => {
+  nock("https://pixabay.com/api/")
+      .get(`/?key=${process.env.API_KEY}&q=textures&order=popular&page=1`)
+      .reply(200, dummy);
+
+  supertest(router)
+      .get('/api/')
+      .expect(200)
+      .expect('Content-Type', /json/)
+        .end((err, res) => {
+          t.error(err);
+          t.deepEqual(res.body.filter(item => item == null), [], 'Array should be empty');
+          t.end()
+        });
+});
+
+test('check that apiHandler returns no undefined values', (t) => {
+  nock("https://pixabay.com/api/")
+      .get(`/?key=${process.env.API_KEY}&q=textures&order=popular&page=1`)
+      .reply(200, dummy);
+
+  supertest(router)
+      .get('/api/')
+      .expect(200)
+      .expect('Content-Type', /json/)
+        .end((err, res) => {
+          t.error(err);
+          t.deepEqual(res.body.filter(item => item == undefined), [], 'Array should be empty');
           t.end()
         });
 });
