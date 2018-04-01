@@ -1,34 +1,31 @@
 html {
   font-size: 16px;
+  min-height: 1000px;
 }
 
 body {
-  background-color: hsla(200, 10%, 60%, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #58B19F;
+  background-image: url("https://www.transparenttextures.com/patterns/black-mamba.png");
+  overflow: hidden;
 }
 
 .tiles {
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  padding: 0;
-  height: 70%;
+  grid-template-columns: repeat(4, 170px);
+  grid-template-rows: repeat(4, 170px);
 }
-
 
 .tile {
   display: flex;
-  position: relative;
-  background-color: hsla(100, 0%, 100%, 0.9);
-  border: 2px solid hsla(100, 10%, 90%, 0.4);
+  position: relative;  
+  background-color: #d8d9da;
+  background-image: url("https://www.transparenttextures.com/patterns/blizzard.png");
   border-radius: 7px;
-  min-width: 165px;
-  max-width: 165px;
-  min-height: 165px;
-  max-height: 165px;
+  border: 3px solid rgba(241, 237, 237, 0.883);
   overflow: hidden;
 }
 
