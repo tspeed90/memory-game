@@ -54,25 +54,32 @@ function displayImages(images) {
 
 //on tile click - update data attribute, compare URLs
 function updateState(tile) {
-  if (this.dataset.matched !== 'true') {
+  if (this.dataset.matched !== 'true' || this.dataset.matched === 'null') {
     if (clicked.length === 0) {
-      clicked.push("" + this.firstChild.src);
+      clicked.push('' + this.firstChild.src);
       this.setAttribute('data-clicked', 'true')
     } else if (clicked.length === 1) {
-      clicked.push("" + this.firstChild.src);
+      clicked.push('' + this.firstChild.src);
       if (clicked[0] === clicked[1]) {
         this.setAttribute('data-matched', 'true');
+        this.removeAttribute('data-clicked');
         tiles.forEach(function(tile) {
           if (tile.dataset.clicked === 'true') {
             tile.setAttribute('data-matched', 'true');
             tile.removeAttribute('data-clicked');
-          }
+          } 
+        })
+      } else {
+        tiles.forEach(function(tile) {
+          tile.removeAttribute('data-clicked');
         })
       }
-    }
-  } else {
+    } else if (clicked.length === 2) {
     clicked = [];
-  }
+    clicked.push('' + this.firstChild.src);
+    this.setAttribute('data-clicked', 'true');
+    } 
+  } 
 }
 
 
