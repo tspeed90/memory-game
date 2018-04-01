@@ -11,7 +11,7 @@ body {
 
 .tiles {
   display: grid;
-  grid-gap: 3px;
+  grid-gap: 5px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   padding: 0;
@@ -22,7 +22,8 @@ body {
 .tile {
   display: flex;
   position: relative;
-  border: 3px solid hsla(100, 10%, 90%, 0.4);
+  background-color: hsla(100, 0%, 100%, 0.9);
+  border: 2px solid hsla(100, 10%, 90%, 0.4);
   border-radius: 7px;
   min-width: 165px;
   max-width: 165px;
@@ -33,9 +34,13 @@ body {
 
 .tile img {
   width: 100%;
+  visibility: hidden;
   object-fit: cover;
   margin: 0;
   padding: 0;
-  transform: rotateX(0deg);
+}
+
+.tile[data-clicked="true"] img, .tile[data-matched="true"] img {
+  visibility: visible;
 }
 

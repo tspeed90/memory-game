@@ -41,9 +41,6 @@ function displayImages(images) {
   tiles.forEach(function(tile) {
     var img = document.createElement('img');
     tile.appendChild(img);
-    var tileBackground = document.createElement('div');
-    tileBackground.classList.add('tile-bg');
-    tile.appendChild(tileBackground);
     var randomIndex = Math.floor(Math.random() * images.length);
     img.src = images[randomIndex];
     images.splice(randomIndex, 1);
@@ -53,16 +50,21 @@ function displayImages(images) {
 
 
 //on tile click - update data attribute, compare URLs
-function updateState(tile) {
-  if (this.dataset.matched !== 'true' || this.dataset.matched === 'null') {
+function updateState() {
+  if (clicked.length === 2) {
+    clicked = [];
+    clicked.push(this.firstChild.src);
+    this.setAttribute('data-clicked', 'true');
+  } else if (this.dataset.matched !== 'true') {
     if (clicked.length === 0) {
-      clicked.push('' + this.firstChild.src);
-      this.setAttribute('data-clicked', 'true')
+      clicked.push(this.firstChild.src);
+      this.setAttribute('data-clicked', 'true');
     } else if (clicked.length === 1) {
-      clicked.push('' + this.firstChild.src);
+      clicked.push(this.firstChild.src);
+      this.setAttribute('data-clicked', 'true');
       if (clicked[0] === clicked[1]) {
-        this.setAttribute('data-matched', 'true');
         this.removeAttribute('data-clicked');
+        this.setAttribute('data-matched', 'true');
         tiles.forEach(function(tile) {
           if (tile.dataset.clicked === 'true') {
             tile.setAttribute('data-matched', 'true');
@@ -71,15 +73,13 @@ function updateState(tile) {
         })
       } else {
         tiles.forEach(function(tile) {
-          tile.removeAttribute('data-clicked');
+            setTimeout(function() {
+              tile.removeAttribute('data-clicked');
+            }, 1000);
         })
       }
-    } else if (clicked.length === 2) {
-    clicked = [];
-    clicked.push('' + this.firstChild.src);
-    this.setAttribute('data-clicked', 'true');
-    } 
-  } 
+    }
+  }
 }
 
 
