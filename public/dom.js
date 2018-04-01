@@ -1,6 +1,6 @@
 //shouldn't be global?
 var tiles =  document.querySelectorAll('.tile');
-var clicked = [];
+
 
 //XHR Request to receive data from backend
 var xhr = new XMLHttpRequest();
@@ -48,39 +48,36 @@ function displayImages(images) {
 
 }
 
-
 //on tile click - update data attribute, compare URLs
+var clicked = [];
 function updateState() {
-  if (clicked.length === 2) {
-    clicked = [];
-    clicked.push(this.firstChild.src);
-    this.setAttribute('data-clicked', 'true');
-  } else if (this.dataset.matched !== 'true') {
-    if (clicked.length === 0) {
-      clicked.push(this.firstChild.src);
+  if (this.dataset.matched !== 'true') {
+    if (clicked.length === 2) {
+      clicked = [];
+      clicked.push(this);
+      this.setAttribute('data-clicked', 'true');
+    } else if (clicked.length === 0) {
+      clicked.push(this);
       this.setAttribute('data-clicked', 'true');
     } else if (clicked.length === 1) {
-      clicked.push(this.firstChild.src);
       this.setAttribute('data-clicked', 'true');
-      if (clicked[0] === clicked[1]) {
-        this.removeAttribute('data-clicked');
-        this.setAttribute('data-matched', 'true');
-        tiles.forEach(function(tile) {
-          if (tile.dataset.clicked === 'true') {
-            tile.setAttribute('data-matched', 'true');
-            tile.removeAttribute('data-clicked');
-          } 
-        })
+      clicked.push(this);
+      if (clicked[0].firstChild.src === clicked[1].firstChild.src && clicked[0] !== clicked[1]) {
+        clicked[0].removeAttribute('data-clicked')
+        clicked[0].setAttribute('data-matched', 'true');
+        clicked[1].removeAttribute('data-clicked')
+        clicked[1].setAttribute('data-matched', 'true');  
       } else {
-        tiles.forEach(function(tile) {
-            setTimeout(function() {
-              tile.removeAttribute('data-clicked');
-            }, 1000);
-        })
+        setTimeout(function() {
+          clicked[0].removeAttribute('data-clicked');
+          clicked[1].removeAttribute('data-clicked');  
+        }, 1000);
       }
     }
   }
 }
+
+ 
 
 
 //event listener for clicks on tiles
