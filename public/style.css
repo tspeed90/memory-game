@@ -38,6 +38,18 @@ body {
 }
 
 .tile[data-clicked="true"] img, .tile[data-matched="true"] img {
+  animation: fade-in;
+  animation-duration: 1s;
   visibility: visible;
 }
 
+@keyframes fade-in {
+  0% {
+    visibility: visible;
+    opacity: 0.1;
+  } 
+  50% {
+    visibility: visible;
+    opacity: 1;
+  }
+}

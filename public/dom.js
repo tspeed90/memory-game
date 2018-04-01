@@ -1,10 +1,8 @@
 //shouldn't be global?
 var tiles =  document.querySelectorAll('.tile');
 
-
 //XHR Request to receive data from backend
 var xhr = new XMLHttpRequest();
-
 var makeRequest = function(url, callback, errorCallback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
@@ -22,14 +20,12 @@ var makeRequest = function(url, callback, errorCallback) {
 
 makeRequest('/api/',handleResponse, handleError);
 
-
 //callback function to double up URLs from response
 function handleResponse(images) {
   var imagesCopy = images.slice(0);
   images = images.concat(imagesCopy);
   displayImages(images);
 }
-
 
 // error callback
 function handleError() {
@@ -45,7 +41,6 @@ function displayImages(images) {
     img.src = images[randomIndex];
     images.splice(randomIndex, 1);
   })
-
 }
 
 //on tile click - update data attribute, compare URLs
@@ -63,9 +58,9 @@ function updateState() {
       this.setAttribute('data-clicked', 'true');
       clicked.push(this);
       if (clicked[0].firstChild.src === clicked[1].firstChild.src && clicked[0] !== clicked[1]) {
-        clicked[0].removeAttribute('data-clicked')
+        clicked[0].removeAttribute('data-clicked');
         clicked[0].setAttribute('data-matched', 'true');
-        clicked[1].removeAttribute('data-clicked')
+        clicked[1].removeAttribute('data-clicked');
         clicked[1].setAttribute('data-matched', 'true');  
       } else {
         setTimeout(function() {
@@ -76,9 +71,6 @@ function updateState() {
     }
   }
 }
-
- 
-
 
 //event listener for clicks on tiles
 tiles.forEach(function(tile) {
