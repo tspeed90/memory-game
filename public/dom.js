@@ -1,3 +1,7 @@
+//shouldn't be global?
+var tiles =  document.querySelectorAll('.tile');
+var clicked = [];
+
 //XHR Request to receive data from backend
 var xhr = new XMLHttpRequest();
 
@@ -34,10 +38,12 @@ function handleError() {
 
 //function to display images on tiles
 function displayImages(images) {
-  var tiles =  document.querySelectorAll('.tile');
   tiles.forEach(function(tile) {
     var img = document.createElement('img');
     tile.appendChild(img);
+    var tileBackground = document.createElement('div');
+    tileBackground.classList.add('tile-bg');
+    tile.appendChild(tileBackground);
     var randomIndex = Math.floor(Math.random() * images.length);
     img.src = images[randomIndex];
     images.splice(randomIndex, 1);
@@ -45,4 +51,32 @@ function displayImages(images) {
 
 }
 
+
+//on tile click - update data attribute, compare URLs
+function updateState(tile) {
+  if (this.dataset.matched !== 'true') {
+    if (clicked.length === 0) {
+      clicked.push("" + this.firstChild.src);
+      this.setAttribute('data-clicked', 'true')
+    } else if (clicked.length === 1) {
+      clicked.push("" + this.firstChild.src);
+      if (clicked[0] === clicked[1]) {
+        this.setAttribute('data-matched', 'true');
+        tiles.forEach(function(tile) {
+          if (tile.dataset.clicked === 'true') {
+            tile.setAttribute('data-matched', 'true');
+            tile.removeAttribute('data-clicked');
+          }
+        })
+      }
+    }
+  } else {
+    clicked = [];
+  }
+}
+
+
 //event listener for clicks on tiles
+tiles.forEach(function(tile) {
+  tile.addEventListener('click', updateState);
+});

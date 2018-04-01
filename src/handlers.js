@@ -3,7 +3,6 @@ const path = require('path');
 const request = require('request');
 require('dotenv').config();
 
-
 const staticHandler = (response, filepath) => {
   const extension = filepath.split('.')[1];
   const extensionType = {
@@ -27,7 +26,6 @@ const staticHandler = (response, filepath) => {
 }
 
 const apiHandler = (response) => {
-
   request(`https://pixabay.com/api/?key=${process.env.API_KEY}&q=pattern&editors_choice=true&page=1`, (err, _, body) => {
     if (err) {
       console.log(err);
