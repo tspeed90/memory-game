@@ -1,7 +1,7 @@
 ## MEMORY GAME
 This is a basic click-and-match memory game using images from the Pixabay API. The project can be found on Heroku here: https://memflip.herokuapp.com
 
-This project was made for the purposes of learn more about and practice:
+This project was made for the purposes of learning more about and practicing the following concepts:
 - Node
 - Request Module
 - XHR Requests
@@ -15,6 +15,13 @@ $ git clone https://github.com/tspeed90/memory-game.git
 $ npm install
 ```
 
-Apply for an API key from [Pixabay](https://pixabay.com/api/docs/) and put them into a file called '.env' and keep it in the root directory.
+#### Getting an API key
+Apply for an API key from [Pixabay](https://pixabay.com/api/docs/). In the root directory, create a file called '.env' and type API_KEY= followed by your api key. See example below.
+```
+API_KEY=1234567890
+```
 
-
+#### Starting the server
+```
+$ npm start
+```
