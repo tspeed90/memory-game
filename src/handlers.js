@@ -26,7 +26,7 @@ const staticHandler = (response, filepath) => {
 }
 
 const apiHandler = (response) => {
-  request(`https://pixabay.com/api/?key=${process.env.API_KEY}&q=pattern&editors_choice=true&page=1`, (err, _, body) => {
+  request(`https://pixabay.com/api/?key=${process.env.API_KEY}&q=nature&editors_choice=true&page=1`, (err, _, body) => {
     if (err) {
       console.log(err);
       response.writeHead(500,{'Content-Type': 'text/html'});
