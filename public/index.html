@@ -8,6 +8,14 @@
   <title>Memory Game</title>
 </head>
 <body>
+  <div class='dialog-bg'>
+    <dialog open id='start-dialog' role='dialog'>
+      <br><br>
+      <h2>MEMFLIP</h2> is a photo matching game. Find all the pairs!
+      <button>Start Game</button>
+    </dialog>
+  </div>
+  
   <main class='tiles'>
     <div class='tile one' data-matched='null'></div>
     <div class='tile two' data-matched='null'></div>
@@ -25,7 +33,6 @@
     <div class='tile fourteen' data-matched='null'></div>
     <div class='tile fifteen' data-matched='null'></div>
     <div class='tile sixteen' data-matched='null'></div>
-
   </main>
 
   <script type='application/javascript' src='/public/dom.js'></script>

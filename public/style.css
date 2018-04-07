@@ -1,16 +1,56 @@
 html {
   font-size: 16px;
-  min-height: 1000px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #58B19F;
+  margin: 0;
+  padding: 0;
+  background: hsl(168, 36%, 52%);
   background-image: url("https://www.transparenttextures.com/patterns/black-mamba.png");
   overflow: hidden;
+  position: relative;
 }
+
+.dialog-bg {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: hsla(168, 36%, 52%, 0.6);
+}
+
+dialog {
+  position: absolute;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  top: 100px;
+  bottom: 100px;
+  left: 250px;
+  right: 250px;
+  background-color: white;
+  z-index: 100;
+}
+
+button {
+  display: block;
+  margin: 30px auto 50px;
+}
+
 
 .tiles {
   display: grid;
@@ -25,7 +65,7 @@ body {
   background-color: #d8d9da;
   background-image: url("https://www.transparenttextures.com/patterns/blizzard.png");
   border-radius: 7px;
-  border: 3px solid rgba(241, 237, 237, 0.883);
+  border: 3px solid hsla(0, 12%, 94%, 0.883);
   overflow: hidden;
 }
 
