@@ -73,7 +73,9 @@ function updateState() {
     }
   }
   //Currently stops final flip until 'okay' is pressed - dialog box will fix?
-  checkForWin();
+    setTimeout (function() {
+      checkForWin();
+    }, 500);      
 }
 function isMatched(tile) {
   return tile.dataset.matched === 'true';
