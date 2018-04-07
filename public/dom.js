@@ -1,4 +1,4 @@
-var tiles =  document.querySelectorAll('.tile');
+var tiles = document.querySelectorAll('.tile');
 var startBtn = document.getElementById('start-btn');
 var dialogBackground = document.querySelector('.dialog-bg');
 var startDialog = document.getElementById('start-dialog');
@@ -71,6 +71,19 @@ function updateState() {
         }, 1000);
       }
     }
+  }
+  //Currently stops final flip until 'okay' is pressed - dialog box will fix?
+  checkForWin();
+}
+function isMatched(tile) {
+  return tile.dataset.matched === 'true';
+}
+
+function checkForWin() {
+  var allTiles = Array.from(tiles);
+  if (allTiles.every(isMatched)) {
+    alert('you win!');
+    return;  
   }
 }
 
