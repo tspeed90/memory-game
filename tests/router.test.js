@@ -32,7 +32,7 @@ test('check for status code of 404', (t) => {
 
 test('check that apiHandler function returns an array with 8 items', (t) => {
   nock("https://pixabay.com/api/")
-      .get(`/?key=${process.env.API_KEY}&q=pattern&editors_choice=true&page=1`)
+      .get(`/?key=${process.env.API_KEY}&q=nature&editors_choice=true&page=1`)
       .reply(200, dummy);
 
   supertest(router)
@@ -49,7 +49,7 @@ test('check that apiHandler function returns an array with 8 items', (t) => {
 
 test('check that apiHandler returns no null values', (t) => {
   nock("https://pixabay.com/api/")
-      .get(`/?key=${process.env.API_KEY}&q=pattern&editors_choice=true&page=1`)
+      .get(`/?key=${process.env.API_KEY}&q=nature&editors_choice=true&page=1`)
       .reply(200, dummy);
 
   supertest(router)
@@ -65,7 +65,7 @@ test('check that apiHandler returns no null values', (t) => {
 
 test('check that apiHandler returns no undefined values', (t) => {
   nock("https://pixabay.com/api/")
-      .get(`/?key=${process.env.API_KEY}&q=pattern&editors_choice=true&page=1`)
+      .get(`/?key=${process.env.API_KEY}&q=nature&editors_choice=true&page=1`)
       .reply(200, dummy);
 
   supertest(router)
