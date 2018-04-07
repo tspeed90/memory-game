@@ -12,11 +12,12 @@ This project was made for the purposes of learning more about and practicing the
 ### To run the project locally:
 ```
 $ git clone https://github.com/tspeed90/memory-game.git
+$ cd memory-game
 $ npm install
 ```
 
 #### Getting an API key
-Apply for an API key from [Pixabay](https://pixabay.com/api/docs/). In the root directory, create a file called '.env' and type API_KEY= followed by your api key. See example below.
+Apply for an API key from [Pixabay](https://pixabay.com/api/docs/). In the root directory, create a file called '.env' and type API_KEY= followed by your api key. Example:
 ```
 API_KEY=1234567890
 ```
@@ -25,3 +26,5 @@ API_KEY=1234567890
 ```
 $ npm start
 ```
+
+You may now click the link in the terminal to open the page in the browser, or navigate to localhost:8080.
