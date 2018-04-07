@@ -1,5 +1,7 @@
-//shouldn't be global?
 var tiles =  document.querySelectorAll('.tile');
+var startBtn = document.getElementById('start-btn');
+var dialogBackground = document.querySelector('.dialog-bg');
+var startDialog = document.getElementById('start-dialog');
 
 //XHR Request to receive data from backend
 var xhr = new XMLHttpRequest();
@@ -75,4 +77,9 @@ function updateState() {
 //event listener for clicks on tiles
 tiles.forEach(function(tile) {
   tile.addEventListener('click', updateState);
+});
+
+startBtn.addEventListener('click', function(e) {
+  dialogBackground.style.display = 'none';
+  startDialog.style.display = 'none';
 });

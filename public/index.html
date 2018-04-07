@@ -8,6 +8,15 @@
   <title>Memory Game</title>
 </head>
 <body>
+  <div class='dialog-bg'>
+    <dialog open id='start-dialog' role='dialog'>
+      <h2>Memflip</h2>
+      <br>
+      Find the matching pairs! 
+      <button id='start-btn'>Start Game</button>
+    </dialog>
+  </div>
+  
   <main class='tiles'>
     <div class='tile one' data-matched='null'></div>
     <div class='tile two' data-matched='null'></div>
@@ -25,7 +34,6 @@
     <div class='tile fourteen' data-matched='null'></div>
     <div class='tile fifteen' data-matched='null'></div>
     <div class='tile sixteen' data-matched='null'></div>
-
   </main>
 
   <script type='application/javascript' src='/public/dom.js'></script>
