@@ -2,11 +2,13 @@ var tiles = document.querySelectorAll('.tile');
 var startBtn = document.getElementById('start-btn');
 var dialogBackground = document.querySelector('.dialog-bg');
 var startDialog = document.getElementById('start-dialog');
+var endDialog = document.getElementById('end-dialog');
+var replayBtn = document.getElementById('replay-btn');
 
 //XHR Request to receive data from backend
 var xhr = new XMLHttpRequest();
-var makeRequest = function(url, callback, errorCallback) {
-  xhr.onreadystatechange = function() {
+var makeRequest = function (url, callback, errorCallback) {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         var data = JSON.parse(xhr.responseText);
@@ -20,7 +22,7 @@ var makeRequest = function(url, callback, errorCallback) {
   xhr.send();
 }
 
-makeRequest('/api/',handleResponse, handleError);
+makeRequest('/api/', handleResponse, handleError);
 
 //callback function to double up URLs from response
 function handleResponse(images) {
@@ -36,7 +38,7 @@ function handleError() {
 
 //function to display images on tiles
 function displayImages(images) {
-  tiles.forEach(function(tile) {
+  tiles.forEach(function (tile) {
     var img = document.createElement('img');
     tile.appendChild(img);
     var randomIndex = Math.floor(Math.random() * images.length);
@@ -63,19 +65,17 @@ function updateState() {
         clicked[0].removeAttribute('data-clicked');
         clicked[0].setAttribute('data-matched', 'true');
         clicked[1].removeAttribute('data-clicked');
-        clicked[1].setAttribute('data-matched', 'true');  
+        clicked[1].setAttribute('data-matched', 'true');
       } else {
-        setTimeout(function() {
+        setTimeout(function () {
           clicked[0].removeAttribute('data-clicked');
-          clicked[1].removeAttribute('data-clicked');  
+          clicked[1].removeAttribute('data-clicked');
         }, 1000);
       }
     }
   }
-  //Currently stops final flip until 'okay' is pressed - dialog box will fix?
-    setTimeout (function() {
-      checkForWin();
-    }, 500);      
+  checkForWin();
+
 }
 function isMatched(tile) {
   return tile.dataset.matched === 'true';
@@ -84,17 +84,23 @@ function isMatched(tile) {
 function checkForWin() {
   var allTiles = Array.from(tiles);
   if (allTiles.every(isMatched)) {
-    alert('you win!');
-    return;  
+    setTimeout(function () {
+      dialogBackground.style.display = 'block';
+      endDialog.style.display = 'block';
+    }, 1000);
   }
 }
 
 //event listener for clicks on tiles
-tiles.forEach(function(tile) {
+tiles.forEach(function (tile) {
   tile.addEventListener('click', updateState);
 });
 
-startBtn.addEventListener('click', function(e) {
+startBtn.addEventListener('click', function (e) {
   dialogBackground.style.display = 'none';
   startDialog.style.display = 'none';
+});
+
+replayBtn.addEventListener('click', function(e) {
+  window.location.reload();
 });
