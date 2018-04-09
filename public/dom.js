@@ -38,6 +38,9 @@ function handleError() {
 
 //function to display images on tiles
 function displayImages(images) {
+  while (tiles.firstChild) {
+    tiles.removeChild(firstChild);
+  }
   tiles.forEach(function (tile) {
     var img = document.createElement('img');
     tile.appendChild(img);
@@ -102,5 +105,14 @@ startBtn.addEventListener('click', function (e) {
 });
 
 replayBtn.addEventListener('click', function(e) {
-  window.location.reload();
+  makeRequest('/api/', function(images) {
+    handleResponse(images);
+    dialogBackground.style.display = 'none';
+    endDialog.style.display = 'none';
+  }, handleError);
+  tiles.forEach(function(tile) {
+    tile.dataset.matched = 'null';
+  })
 });
+
+
