@@ -111,7 +111,7 @@ replayBtn.addEventListener('click', function(e) {
     endDialog.style.display = 'none';
   }, handleError);
   tiles.forEach(function(tile) {
-    tile.dataset.matched = 'null';
+    tile.dataset.matched = 'false';
   })
 });
 
