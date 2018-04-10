@@ -40,8 +40,11 @@ const apiHandler = (response) => {
 
 const getImages = (body) => {
   const data = JSON.parse(body);
+  while (data.hits.length > 8) {
+    const randomNum = Math.floor(Math.random() * data.hits.length);
+    data.hits.splice(randomNum, 1);
+  }
   let images = data.hits.map(image => image.largeImageURL);
-  images.length = 8;
   return images;
 }
 
