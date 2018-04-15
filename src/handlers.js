@@ -14,13 +14,14 @@ const staticHandler = (response, filepath) => {
     ico: 'image/x-icon'
   };
 
-  fs.readFile(path.join(__dirname, '..', filepath), 'utf8', (error, file) => {
+  fs.readFile(path.join(__dirname, '..', filepath), 'binary', (error, file) => {
     if (error) {
       response.writeHead(500, {'Content-Type': 'text/html'});
       response.end("<h1>Sorry, there was a problem on our end.</h1>");
     } else {
       response.writeHead(200, {'Content-Type': extensionType[extension]});
-      response.end(file);
+      response.write(file, 'binary');
+      response.end();
     }
   });
 }

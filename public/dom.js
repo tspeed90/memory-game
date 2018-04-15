@@ -101,7 +101,7 @@ tiles.forEach(function (tile) {
 
 startBtn.addEventListener('click', function (e) {
   dialogBackground.style.display = 'none';
-  startDialog.style.display = 'none';
+  startDialog.removeAttribute('open');
 });
 
 replayBtn.addEventListener('click', function(e) {
