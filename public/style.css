@@ -147,14 +147,15 @@ h2 {
   grid-gap: 10px;
   grid-template-columns: 2;
   grid-template-rows: 4;
-  font-size: .8rem;
+  font-size: .7rem;
   color: rgb(77, 76, 76);
+  background-color: rgba(223, 215, 215, 0.4);
+  border-radius: 7px;
   position: absolute;
   bottom: 1%;
   left: 1%;
   margin: 0;
-  padding: 0;
-  z-index: -10;
+  padding: 0px 5px;
 }
 
 .footer img {
@@ -174,4 +175,12 @@ h2 {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end:  2;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover, a:focus {
+  background-color: rgba(240, 240, 240, 0.8);
 }
