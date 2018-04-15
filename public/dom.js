@@ -1,5 +1,5 @@
 var tiles = document.querySelectorAll('.tile');
-var startBtn = document.getElementById('start-btn');
+var startBtn = document.querySelector('.start-btn');
 var dialogBackground = document.querySelector('.dialog-bg');
 var startDialog = document.getElementById('start-dialog');
 var endDialog = document.getElementById('end-dialog');
@@ -29,6 +29,8 @@ function handleResponse(images) {
   var imagesCopy = images.slice(0);
   images = images.concat(imagesCopy);
   displayImages(images);
+  startBtn.removeAttribute('disabled');
+  startBtn.classList.remove('disabled');
 }
 
 // error callback
