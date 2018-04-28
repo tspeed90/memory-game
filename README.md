@@ -7,7 +7,7 @@ This project was made for the purposes of learning more about and practicing the
 - XHR Requests
 - Supertest/Nock testing
 - Environmental Variables
-
+- Deploying to Heroku
 
 ### To run the project locally:
 ```
