@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -8,50 +9,54 @@
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
   <title>Memory Game</title>
 </head>
+
 <body>
   <div class='dialog-bg'>
     <dialog open id='start-dialog' role='dialog'>
       <h2>Memflip</h2>
-      <br>
-      Find the matching pairs! 
+      <br> Find the matching pairs!
       <button class='start-btn disabled' disabled>Start Game</button>
     </dialog>
-    <dialog open id='end-dialog' role='dialog'>
-        <h2>YOU WIN!</h2>
-        <br>
-        Well done! 
-        <br>Would you like to play again? 
-        <button id='replay-btn'>Start Game</button>
-      </dialog>
-    </div>
-    <main class='tiles'>
-      <div class='tile one' data-matched='false'></div>
-      <div class='tile two' data-matched='false'></div>
-      <div class='tile three' data-matched='false'></div>
-      <div class='tile four' data-matched='false'></div>
-      <div class='tile five' data-matched='false'></div>
-      <div class='tile six' data-matched='false'></div>
-      <div class='tile seven' data-matched='false'></div>
-      <div class='tile eight' data-matched='false'></div>
-      <div class='tile nine' data-matched='false'></div>
-      <div class='tile ten' data-matched='false'></div>
-      <div class='tile eleven' data-matched='false'></div>
-      <div class='tile twelve' data-matched='false'></div>
-      <div class='tile thirteen' data-matched='false'></div>
-      <div class='tile fourteen' data-matched='false'></div>
-      <div class='tile fifteen' data-matched='false'></div>
-      <div class='tile sixteen' data-matched='false'></div>
-    </main>
-    
+  </div>
+  <dialog open id='end-dialog' role='dialog'>
+    <h2>YOU WIN!</h2>
+    <br> Well done!
+    <br>Would you like to play again?
+    <button id='replay-btn'>Start Game</button>
+  </dialog>
+
+  <main class='tiles'>
+    <div class='tile one' data-matched='false'></div>
+    <div class='tile two' data-matched='false'></div>
+    <div class='tile three' data-matched='false'></div>
+    <div class='tile four' data-matched='false'></div>
+    <div class='tile five' data-matched='false'></div>
+    <div class='tile six' data-matched='false'></div>
+    <div class='tile seven' data-matched='false'></div>
+    <div class='tile eight' data-matched='false'></div>
+    <div class='tile nine' data-matched='false'></div>
+    <div class='tile ten' data-matched='false'></div>
+    <div class='tile eleven' data-matched='false'></div>
+    <div class='tile twelve' data-matched='false'></div>
+    <div class='tile thirteen' data-matched='false'></div>
+    <div class='tile fourteen' data-matched='false'></div>
+    <div class='tile fifteen' data-matched='false'></div>
+    <div class='tile sixteen' data-matched='false'></div>
+  </main>
+
   <header class="header">
     <p id='header-text'>Memflip</p>
   </header>
   <footer class="footer">
-    <a href='https://www.github.com/tspeed90'><img src='/public/images/github-logo.png'/></a>
-    <p id='footer-text'>@tspeed90 <br>
-      Images from <a href='https://pixabay.com/api/docs/'>Pixabay API</a>
+    <a href='https://www.github.com/tspeed90'>
+      <img src='/public/images/github-logo.png' />
+    </a>
+    <p id='footer-text'>@tspeed90
+      <br> Images from
+      <a href='https://pixabay.com/api/docs/'>Pixabay API</a>
     </p>
   </footer>
   <script type='application/javascript' src='/public/dom.js'></script>
 </body>
+
 </html>
