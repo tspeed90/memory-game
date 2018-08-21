@@ -111,7 +111,7 @@ h2 {
 .tiles {
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(4, 170px);
+  grid-template-columns: repeat(3, 170px);
   grid-template-rows: repeat(4, 170px);
 }
 
@@ -236,5 +236,52 @@ a:focus {
   }
   100% {
     transform: rotateY(360deg);
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  #header-text:hover {
+    animation: none;
+  }
+  .header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: rgb(77, 76, 76);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  #header-text {
+    text-align: center;
+    padding: 0;
+  }
+  .tiles {
+    margin-top: 3rem;
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(4, 110px);
+  }
+  #start-dialog,
+  #end-dialog {
+    position: absolute;
+    background-color: hsl(0, 7%, 92%);
+    color: hsl(180, 4%, 22%);
+    box-shadow: 0px 9px 10px hsla(120, 2%, 26%, 0.8);
+    border: 2px solid rgba(167, 127, 193, 1);
+    border-radius: 15px;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    text-align: center;
+    padding: 0rem 1rem 1rem 1rem;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+  }
+  .footer {
+    display: none;
   }
 }
