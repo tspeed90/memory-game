@@ -2,10 +2,12 @@
   "name": "memory-game",
   "version": "1.0.0",
   "description": "A memory game using photos from an external API",
-  "main": "server.js",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "nyc tape ./tests/*.test.js | tap-spec",
-    "start": "nodemon src/server.js"
+    "dev": "gulp | nodemon src/server.js",
+    "start": "node src/server.js",
+    "heroku-postbuild": "gulp bundle"
   },
   "repository": {
     "type": "git",
@@ -25,14 +27,25 @@
   "homepage": "https://github.com/tspeed90/memory-game#readme",
   "dependencies": {
     "dotenv": "^5.0.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "browserify": "^16.2.3",
+    "gulp": "^4.0.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "tsify": "^4.0.0",
+    "vinyl-source-stream": "^2.0.0"
   },
   "devDependencies": {
+    "gulp-util": "^3.0.8",
     "nock": "^9.6.1",
     "nodemon": "^1.18.4",
     "nyc": "^11.9.0",
     "supertest": "^3.3.0",
-    "tap-spec": "^4.1.2",
-    "tape": "^4.9.1"
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1",
+    "typescript": "^3.1.3",
+    "watchify": "^3.11.0"
+  },
+  "directories": {
+    "test": "tests"
   }
 }

@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# directory for compiled ts -> js files
+dist/

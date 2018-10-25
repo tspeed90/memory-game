@@ -1,0 +1,7 @@
+{
+  "files": ["public/dom.ts"],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "target": "es5"
+  }
+}

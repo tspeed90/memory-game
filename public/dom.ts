@@ -1,6 +1,6 @@
 var tiles = document.querySelectorAll('.tile');
 var startBtn = document.querySelector('.start-btn');
-var dialogBackground = document.querySelector('.dialog-bg');
+var dialogBackground = document.getElementById('dialog-bg');
 var startDialog = document.getElementById('start-dialog');
 var endDialog = document.getElementById('end-dialog');
 let replayBtn = document.getElementById('replay-btn');
@@ -91,7 +91,7 @@ function isMatched(tile) {
 }
 
 function checkForWin() {
-  var allTiles = Array.from(tiles);
+  var allTiles = Array.prototype.slice.call(tiles);
   if (allTiles.every(isMatched)) {
     setTimeout(function() {
       endDialog.style.display = 'block';
@@ -111,9 +111,9 @@ startBtn.addEventListener('click', function(e) {
 
 replayBtn.addEventListener('click', function(e) {
   makeRequest('/api/', handleResponse, handleError);
-  // dialogBackground.style.display = 'none';
+  dialogBackground.style.display = 'none';
   endDialog.style.display = 'none';
-  tiles.forEach(function(tile) {
+  tiles.forEach(function(tile: HTMLElement) {
     tile.dataset.matched = 'false';
   });
 });
