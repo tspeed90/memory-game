@@ -44,7 +44,7 @@ body {
   position: relative;
 }
 
-.dialog-bg {
+#dialog-bg {
   width: 100%;
   margin: 0;
   padding: 0;

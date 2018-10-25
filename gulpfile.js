@@ -1,10 +1,28 @@
 const gulp = require('gulp');
-const ts = require('gulp-typescript');
-const memoryGame = ts.createProject('tsconfig.json');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const tsify = require('tsify');
+const paths = {
+  pages: ['public/*.html']
+};
 
-gulp.task('default', () => {
-  return memoryGame
-    .src()
-    .pipe(memoryGame())
-    .js.pipe(gulp.dest('dist'));
+gulp.task('copy-html', function copyHtml() {
+  return gulp.src(paths.pages).pipe(gulp.dest('dist'));
 });
+
+gulp.task(
+  'default',
+  gulp.series(gulp.parallel('copy-html'), function bundleCode() {
+    return browserify({
+      basedir: '.',
+      debug: true,
+      entries: ['public/dom.ts'],
+      cache: {},
+      packageCache: {}
+    })
+      .plugin(tsify)
+      .bundle()
+      .pipe(source('bundle.js'))
+      .pipe(gulp.dest('dist'));
+  })
+);
