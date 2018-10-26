@@ -6,7 +6,11 @@ var endDialog = document.getElementById('end-dialog');
 let replayBtn = document.getElementById('replay-btn');
 
 //XHR Request to receive data from backend
-var makeRequest = function(url: string, callback, errorCallback) {
+var makeRequest = function(
+  url: string,
+  callback: (data: string[]) => void,
+  errorCallback: () => void
+) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
@@ -56,8 +60,6 @@ function handleError(): void {
 
 //on tile click - update data attribute, compare URLs
 var clicked: HTMLDivElement[] = [];
-var firstImg = clicked[0].firstChild as HTMLImageElement;
-var secondImg = clicked[1].firstChild as HTMLImageElement;
 function updateState() {
   if (this.dataset.matched !== 'true') {
     if (clicked.length === 2) {
@@ -70,6 +72,8 @@ function updateState() {
     } else if (clicked.length === 1) {
       this.setAttribute('data-clicked', 'true');
       clicked.push(this);
+      var firstImg = clicked[0].firstChild as HTMLImageElement;
+      var secondImg = clicked[1].firstChild as HTMLImageElement;
       if (firstImg.src === secondImg.src && clicked[0] !== clicked[1]) {
         clicked[0].removeAttribute('data-clicked');
         clicked[0].setAttribute('data-matched', 'true');
