@@ -6,12 +6,12 @@ var endDialog = document.getElementById('end-dialog');
 let replayBtn = document.getElementById('replay-btn');
 
 //XHR Request to receive data from backend
-var makeRequest = function(url, callback, errorCallback) {
+var makeRequest = function(url: string, callback, errorCallback) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
+        var data: string[] = JSON.parse(xhr.responseText);
         callback(data);
       } else {
         errorCallback();
@@ -25,24 +25,24 @@ var makeRequest = function(url, callback, errorCallback) {
 makeRequest('/api/', handleResponse, handleError);
 
 //function to display images on tiles
-function displayImages(images) {
-  tiles.forEach(function(tile) {
+function displayImages(images: string[]) {
+  tiles.forEach(function(tile: HTMLElement) {
     while (tile.firstChild) {
       tile.removeChild(tile.firstChild);
     }
   });
-  tiles.forEach(function(tile) {
-    var img = document.createElement('img');
+  tiles.forEach(function(tile: HTMLElement) {
+    var img: HTMLImageElement = document.createElement('img');
     tile.appendChild(img);
-    var randomIndex = Math.floor(Math.random() * images.length);
+    var randomIndex: number = Math.floor(Math.random() * images.length);
     img.src = images[randomIndex];
     images.splice(randomIndex, 1);
   });
 }
 
 //callback function to double up URLs from response
-function handleResponse(images) {
-  var imagesCopy = images.slice(0);
+function handleResponse(images): void {
+  var imagesCopy: string[] = images.slice(0);
   images = images.concat(imagesCopy);
   displayImages(images);
   startBtn.removeAttribute('disabled');
@@ -50,12 +50,14 @@ function handleResponse(images) {
 }
 
 // error callback
-function handleError() {
+function handleError(): void {
   console.log('error');
 }
 
 //on tile click - update data attribute, compare URLs
-var clicked = [];
+var clicked: HTMLDivElement[] = [];
+var firstImg = clicked[0].firstChild as HTMLImageElement;
+var secondImg = clicked[1].firstChild as HTMLImageElement;
 function updateState() {
   if (this.dataset.matched !== 'true') {
     if (clicked.length === 2) {
@@ -68,16 +70,13 @@ function updateState() {
     } else if (clicked.length === 1) {
       this.setAttribute('data-clicked', 'true');
       clicked.push(this);
-      if (
-        clicked[0].firstChild.src === clicked[1].firstChild.src &&
-        clicked[0] !== clicked[1]
-      ) {
+      if (firstImg.src === secondImg.src && clicked[0] !== clicked[1]) {
         clicked[0].removeAttribute('data-clicked');
         clicked[0].setAttribute('data-matched', 'true');
         clicked[1].removeAttribute('data-clicked');
         clicked[1].setAttribute('data-matched', 'true');
       } else {
-        setTimeout(function() {
+        setTimeout(function(): void {
           clicked[0].removeAttribute('data-clicked');
           clicked[1].removeAttribute('data-clicked');
         }, 1000);
@@ -86,21 +85,21 @@ function updateState() {
   }
   checkForWin();
 }
-function isMatched(tile) {
+function isMatched(tile): boolean {
   return tile.dataset.matched === 'true';
 }
 
-function checkForWin() {
-  var allTiles = Array.prototype.slice.call(tiles);
+function checkForWin(): void {
+  var allTiles: HTMLElement[] = Array.prototype.slice.call(tiles);
   if (allTiles.every(isMatched)) {
-    setTimeout(function() {
+    setTimeout(function(): void {
       endDialog.style.display = 'block';
     }, 1000);
   }
 }
 
 //event listener for clicks on tiles
-tiles.forEach(function(tile) {
+tiles.forEach(function(tile: HTMLElement) {
   tile.addEventListener('click', updateState);
 });
 
