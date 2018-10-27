@@ -1,15 +1,11 @@
-## MEMORY GAME
-This is a basic click-and-match memory game using images from the Pixabay API. The project can be found on Heroku here: https://memflip.herokuapp.com
+# MEMORY GAME
 
-This project was made for the purposes of learning more about and practicing the following concepts:
-- Node
-- Request Module
-- XHR Requests
-- Supertest/Nock testing
-- Environmental Variables
-- Deploying to Heroku
+Basic click-and-match memory game application using dynamic images from the Pixabay API.
 
-### To run the project locally:
+[View the live site](https://memflip.herokuapp.com)
+
+## To run the project locally:
+
 ```
 $ git clone https://github.com/tspeed90/memory-game.git
 $ cd memory-game
@@ -17,14 +13,20 @@ $ npm install
 ```
 
 #### Getting an API key
+
 Apply for an API key from [Pixabay](https://pixabay.com/api/docs/). In the root directory, create a file called '.env' and type API_KEY= followed by your api key. Example:
+
 ```
 API_KEY=1234567890
 ```
 
-#### Starting the server
+#### Available Scripts
+
 ```
-$ npm start
+$ npm start        # fires up server
+$ npm run dev      # runs gulp with watchify and server simultaneously
+$ npm test
+$ heroku-postbuild # runs gulp (no watchify) for heroku
 ```
 
-You may now click the link in the terminal to open the page in the browser, or navigate to localhost:8080.
+Once you've started the server, you may now click the link in the terminal, or navigate to localhost:8080
