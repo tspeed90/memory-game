@@ -5,7 +5,6 @@ var startDialog = document.getElementById('start-dialog');
 var endDialog = document.getElementById('end-dialog');
 let replayBtn = document.getElementById('replay-btn');
 
-//XHR Request to receive data from backend
 var makeRequest = function(
   url: string,
   callback: (data: string[]) => void,
@@ -28,7 +27,6 @@ var makeRequest = function(
 
 makeRequest('/api/', handleResponse, handleError);
 
-//function to display images on tiles
 function displayImages(images: string[]) {
   tiles.forEach(function(tile: HTMLElement) {
     while (tile.firstChild) {
@@ -44,7 +42,6 @@ function displayImages(images: string[]) {
   });
 }
 
-//callback function to double up URLs from response
 function handleResponse(images): void {
   var imagesCopy: string[] = images.slice(0);
   images = images.concat(imagesCopy);
@@ -53,12 +50,10 @@ function handleResponse(images): void {
   startBtn.classList.remove('disabled');
 }
 
-// error callback
 function handleError(): void {
   console.log('error');
 }
 
-//on tile click - update data attribute, compare URLs
 var clicked: HTMLDivElement[] = [];
 function updateState() {
   if (this.dataset.matched !== 'true') {
@@ -102,7 +97,6 @@ function checkForWin(): void {
   }
 }
 
-//event listener for clicks on tiles
 tiles.forEach(function(tile: HTMLElement) {
   tile.addEventListener('click', updateState);
 });
