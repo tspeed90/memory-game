@@ -4,6 +4,7 @@ const source = require('vinyl-source-stream');
 const watchify = require('watchify');
 const tsify = require('tsify');
 const gutil = require('gulp-util');
+const ts = require('gulp-typescript');
 const paths = {
   pages: ['public/*.html']
 };
@@ -17,10 +18,6 @@ const browserifyOptions = {
 
 const watchedBrowserify = watchify(browserify(browserifyOptions).plugin(tsify));
 
-gulp.task('copy-html', function copyHtml() {
-  return gulp.src(paths.pages).pipe(gulp.dest('dist'));
-});
-
 function buildDist(browserifyObject) {
   return browserifyObject
     .bundle()
@@ -32,13 +29,32 @@ function bundleAndWatch() {
   return buildDist(watchedBrowserify);
 }
 
+const serverProject = ts.createProject('./src/tsconfig.json');
+
+gulp.task('copy-html', function copyHtml() {
+  return gulp.src(paths.pages).pipe(gulp.dest('dist'));
+});
+
+gulp.task('server', () => {
+  return gulp
+    .src('./src/*.ts')
+    .pipe(serverProject())
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task(
   'bundle',
-  gulp.series(gulp.parallel('copy-html'), function bundle() {
-    return buildDist(browserify(browserifyOptions).plugin(tsify));
-  })
+  gulp.series(
+    'copy-html',
+    gulp.parallel('server', function bundle() {
+      return buildDist(browserify(browserifyOptions).plugin(tsify));
+    })
+  )
 );
 
-gulp.task('default', gulp.series(gulp.parallel('copy-html'), bundleAndWatch));
+gulp.task(
+  'default',
+  gulp.series('copy-html', gulp.parallel('server', bundleAndWatch))
+);
 watchedBrowserify.on('update', bundleAndWatch);
 watchedBrowserify.on('log', gutil.log);

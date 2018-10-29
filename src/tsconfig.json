@@ -1,0 +1,10 @@
+{
+  "files": ["./server.ts"],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "rootDir": "./",
+    "outDir": "../dist/server",
+    "module": "CommonJS",
+    "target": "es6"
+  }
+}

@@ -58,10 +58,4 @@ const notFoundHandler = response => {
   response.writeHead(404, { 'Content-Type': 'text/html' });
   response.end("<h1>Sorry, we couldn't find what you're looking for.</h1>");
 };
-
-module.exports = {
-  staticHandler,
-  apiHandler,
-  notFoundHandler,
-  getImages
-};
+export { staticHandler, apiHandler, notFoundHandler };

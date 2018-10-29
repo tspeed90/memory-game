@@ -2,6 +2,9 @@
   "files": ["public/dom.ts"],
   "compilerOptions": {
     "noImplicitAny": false,
+    "rootDir": "./src",
+    "outDir": "./dist/public",
     "target": "es5"
-  }
+  },
+  "exclude": ["node_modules"]
 }

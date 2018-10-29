@@ -1,4 +1,4 @@
-const { staticHandler, notFoundHandler, apiHandler } = require('./handlers');
+import { staticHandler, notFoundHandler, apiHandler } from './handlers';
 
 const router = (request, response) => {
   const url = request.url;
@@ -16,4 +16,4 @@ const router = (request, response) => {
   }
 };
 
-module.exports = { router };
+export { router };

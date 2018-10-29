@@ -5,8 +5,8 @@
   "main": "./dist/main.js",
   "scripts": {
     "test": "nyc tape ./tests/*.test.js | tap-spec",
-    "dev": "gulp | nodemon src/server.js",
-    "start": "node src/server.js",
+    "dev": "gulp | nodemon dist/server.js",
+    "start": "node dist/server.js",
     "heroku-postbuild": "gulp bundle"
   },
   "repository": {
@@ -26,11 +26,12 @@
   },
   "homepage": "https://github.com/tspeed90/memory-game#readme",
   "dependencies": {
-    "dotenv": "^5.0.1",
-    "request": "^2.88.0",
+    "@types/node": "^10.12.0",
     "browserify": "^16.2.3",
+    "dotenv": "^5.0.1",
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.0-alpha.3",
+    "request": "^2.88.0",
     "tsify": "^4.0.0",
     "vinyl-source-stream": "^2.0.0"
   },
