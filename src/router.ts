@@ -1,7 +1,7 @@
 import { staticHandler, notFoundHandler, apiHandler } from './handlers';
 
-const router = (request, response) => {
-  const url = request.url;
+const router = (request, response): void => {
+  const url: string = request.url;
 
   if (url === '/') {
     staticHandler(response, 'public/index.html');

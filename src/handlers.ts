@@ -4,7 +4,7 @@ const request = require('request');
 require('dotenv').config();
 
 const staticHandler = (response, filepath) => {
-  const extension = filepath.split('.')[1];
+  const extension: string = filepath.split('.')[1];
   const extensionType = {
     html: 'text/html',
     css: 'text/css',
@@ -47,7 +47,7 @@ const apiHandler = response => {
 const getImages = body => {
   const data = JSON.parse(body);
   while (data.hits.length > 6) {
-    const randomNum = Math.floor(Math.random() * data.hits.length);
+    const randomNum: number = Math.floor(Math.random() * data.hits.length);
     data.hits.splice(randomNum, 1);
   }
   let images = data.hits.map(image => image.largeImageURL);
